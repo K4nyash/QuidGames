@@ -20,9 +20,16 @@ namespace QuidGames
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int LatestRozgrywka;
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Dodawanie_Rozgrywki okno = new Dodawanie_Rozgrywki(LatestRozgrywka);
+            okno.Show();
         }
     }
 }
