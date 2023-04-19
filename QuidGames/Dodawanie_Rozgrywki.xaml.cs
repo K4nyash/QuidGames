@@ -26,7 +26,17 @@ namespace QuidGames
         {
             InitializeComponent();
             LatestRozgrywka = LR;
-            
+            List<string> cbitems = new List<string>();
+            string Content;
+            Content = File.ReadAllText("../../../../Baza.txt");
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "T")
+                {
+                    Turniej.Items.Add(temp[2]);
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,7 +46,8 @@ namespace QuidGames
             Content += "R;" + (LatestRozgrywka + 1).ToString() + ";";
             Content += Nazwa.Text + ";";
             Content += (Turniej.SelectedIndex + 1).ToString() + ";";
-            Content += (Druzyna.SelectedIndex + 1).ToString() + ";";
+            Content += (Druzyna1.SelectedIndex + 1).ToString() + ";";
+            Content += (Druzyna2.SelectedIndex + 1).ToString() + ";";
             Content += (Sedzia.SelectedIndex + 1).ToString() + ";";
             Content += "\n";
             File.WriteAllText("../../../../Baza.txt", Content);
