@@ -26,6 +26,7 @@ namespace QuidGames
         {
             InitializeComponent();
             LatestRozgrywka = LR;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
