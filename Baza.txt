@@ -3,3 +3,8 @@ R;1;asd;2;1;1;
 T;1;Turniej1;Milowa46;
 Z;1;Siema;
 Z;1;Siema1;
+T;1;Nazwa;Milowa;
+S;1;Maksymilian;Chmielak;
+Z;1;Milaże;
+Z;1;Milowcy;
+R;1;Rozgrywka Milowej;2;6;5;1;
