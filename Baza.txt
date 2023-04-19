@@ -3,3 +3,5 @@ R;1;asd;2;1;1;
 T;1;Turniej1;Milowa46;
 Z;1;Siema;
 Z;1;Siema1;
+S;1;Imie;Nazwisko :);
+G;1;Imie;Nazwisko;

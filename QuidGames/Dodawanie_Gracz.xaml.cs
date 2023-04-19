@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,26 +13,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.IO;
 
 namespace QuidGames
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Dodawanie_Sedziego.xaml
-    /// </summary>
-    public partial class Dodawanie_Sedziego : Window
+    public partial class Dodawanie_Gracz : Window
     {
-        public int LatestRozgrywka;
-        public Dodawanie_Sedziego(int LR)
+        public int LatestGracz;
+        public Dodawanie_Gracz(int LG)
         {
             InitializeComponent();
-            LatestRozgrywka = LR;
+            LatestGracz = LG;
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string Content;
             Content = File.ReadAllText("../../../../Baza.txt");
-            Content += "S;" + (LatestRozgrywka + 1).ToString() + ";";
+            Content += "G;" + (LatestGracz + 1).ToString() + ";";
             Content += Imie.Text + ";";
             Content += Nazwisko.Text + ";";
             Content += "\n";
