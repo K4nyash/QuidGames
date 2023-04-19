@@ -37,7 +37,7 @@ namespace QuidGames
                 }
                 if (temp[0] == "S")
                 {
-                    Sedzia.Items.Add(temp[1]+" " + temp[2]);
+                    Sedzia.Items.Add(temp[2]+" " + temp[3]);
                 }
                 if (temp[0] == "Z")
                 {

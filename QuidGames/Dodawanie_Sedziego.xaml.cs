@@ -30,7 +30,7 @@ namespace QuidGames
         {
             string Content;
             Content = File.ReadAllText("../../../../Baza.txt");
-            Content += "R;" + (LatestRozgrywka + 1).ToString() + ";";
+            Content += "S;" + (LatestRozgrywka + 1).ToString() + ";";
             Content += Imie.Text + ";";
             Content += Nazwisko.Text + ";";
             Content += "\n";
