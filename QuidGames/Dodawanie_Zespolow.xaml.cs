@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace QuidGames
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Dodawanie_Zespolow.xaml
-    /// </summary>
     public partial class Dodawanie_Zespolow : Window
     {
         public int LatestZespol;
