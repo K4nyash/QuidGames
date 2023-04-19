@@ -12,6 +12,7 @@
             <Button Height="50" Margin="10" Click="Button_Click">Dodaj Rozgrywke</Button>
             <Button Height="50" Margin="10" Click="Button_Click_1" >Dodaj Sędziego</Button>
             <Button Height="50" Margin="10" Click="DodajZ_Click" >Dodaj Zespołu</Button>
+            <Button Height="50" Margin="10" Click="DodajG_Click" >Dodaj Gracza</Button>
         </StackPanel>
     </Grid>
 </Window>
