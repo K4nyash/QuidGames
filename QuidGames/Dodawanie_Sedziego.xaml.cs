@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,42 +11,28 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace QuidGames
 {
-    public partial class Dodawanie_Rozgrywki : Window
+    /// <summary>
+    /// Logika interakcji dla klasy Dodawanie_Sedziego.xaml
+    /// </summary>
+    public partial class Dodawanie_Sedziego : Window
     {
         public int LatestRozgrywka;
-        public Dodawanie_Rozgrywki(int LR)
+        public Dodawanie_Sedziego(int LR)
         {
             InitializeComponent();
             LatestRozgrywka = LR;
-            string Content;
-            Content = File.ReadAllText("../../../../Baza.txt");
-            foreach (string line in Content.Split("\n"))
-            {
-                string[] temp = line.Split(";");
-                if (temp[0] == "T")
-                {
-                    Turniej.Items.Add(temp[2]);
-                }
-                if (temp[0] == "R")
-                {
-                    Sedzia.Items.Add(temp[1]+" " + temp[2]);
-                }
-            }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string Content;
             Content = File.ReadAllText("../../../../Baza.txt");
             Content += "R;" + (LatestRozgrywka + 1).ToString() + ";";
-            Content += Nazwa.Text + ";";
-            Content += (Turniej.SelectedIndex + 1).ToString() + ";";
-            Content += (Druzyna1.SelectedIndex + 1).ToString() + ";";
-            Content += (Druzyna2.SelectedIndex + 1).ToString() + ";";
-            Content += (Sedzia.SelectedIndex + 1).ToString() + ";";
+            Content += Imie.Text + ";";
+            Content += Nazwisko.Text + ";";
             Content += "\n";
             File.WriteAllText("../../../../Baza.txt", Content);
             this.Close();
