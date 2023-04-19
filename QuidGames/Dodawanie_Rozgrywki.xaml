@@ -21,10 +21,9 @@
                 <ComboBoxItem>Ipsum</ComboBoxItem>
             </ComboBox>
             <ComboBox Width="200" Height="30" Margin="5" Name="Sedzia">
-                <ComboBoxItem>Lorem</ComboBoxItem>
-                <ComboBoxItem>Ipsum</ComboBoxItem>
+                
             </ComboBox>
-            <StackPanel HorizontalAlignment="Center" Height="30" Margin="5" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Center" Height="46" Orientation="Horizontal">
                 <Button Height="30" Width="100" Margin="5" Click="Button_Click">Zapisz</Button>
                 <Button Height="30" Width="100" Margin="5" Click="Button_Click_1">Anuluj</Button>
             </StackPanel>
