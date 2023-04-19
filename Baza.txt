@@ -1,3 +1,5 @@
 R;1;asdas;1;2;1;
 R;1;asd;2;1;1;
 T;1;Turniej1;Milowa46;
+Z;1;Siema;
+Z;1;Siema1;

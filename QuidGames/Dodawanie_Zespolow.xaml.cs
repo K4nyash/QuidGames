@@ -34,7 +34,6 @@ namespace QuidGames
             Content = File.ReadAllText("../../../../Baza.txt");
             Content += "Z;" + (LatestZespol + 1).ToString() + ";";
             Content += Nazwa.Text + ";";
-            Content += (ID_Rozgrywki.SelectedIndex+1) + ";";
             Content += "\n";
             File.WriteAllText("../../../../Baza.txt", Content);
             this.Close();
