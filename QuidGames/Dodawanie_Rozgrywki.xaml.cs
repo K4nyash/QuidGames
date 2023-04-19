@@ -26,7 +26,6 @@ namespace QuidGames
         {
             InitializeComponent();
             LatestRozgrywka = LR;
-            List<string> cbitems = new List<string>();
             string Content;
             Content = File.ReadAllText("../../../../Baza.txt");
             foreach (string line in Content.Split("\n"))
