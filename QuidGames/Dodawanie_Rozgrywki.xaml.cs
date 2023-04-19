@@ -35,6 +35,10 @@ namespace QuidGames
                 {
                     Turniej.Items.Add(temp[2]);
                 }
+                if (temp[0] == "R")
+                {
+                    Sedzia.Items.Add(temp[1]+" " + temp[2]);
+                }
             }
         }
 

@@ -10,40 +10,37 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace QuidGames
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy Dodawanie_Sedziego.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Dodawanie_Sedziego : Window
     {
         public int LatestRozgrywka;
-        public int LatestTurniej;
-        public int LatestSedzia;
-        public MainWindow()
+        public Dodawanie_Sedziego(int LR)
         {
             InitializeComponent();
+            LatestRozgrywka = LR;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Dodawanie_Rozgrywki okno = new Dodawanie_Rozgrywki(LatestRozgrywka);
-            okno.Show();
-        }
-
-        private void DodajT_Click(object sender, RoutedEventArgs e)
-        {
-            Dodawanie_Turniej okno = new Dodawanie_Turniej(LatestTurniej);
-            okno.Show();
+            string Content;
+            Content = File.ReadAllText("../../../../Baza.txt");
+            Content += "R;" + (LatestRozgrywka + 1).ToString() + ";";
+            Content += Imie.Text + ";";
+            Content += Nazwisko.Text + ";";
+            Content += "\n";
+            File.WriteAllText("../../../../Baza.txt", Content);
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Dodawanie_Sedziego okno = new Dodawanie_Sedziego(LatestSedzia);
-            okno.Show();
+            this.Close();
         }
     }
 }
