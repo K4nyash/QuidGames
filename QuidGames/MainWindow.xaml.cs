@@ -20,6 +20,7 @@ namespace QuidGames
         public int LatestRozgrywka;
         public int LatestTurniej;
         public int LatestSedzia;
+        public int LatestZespol;
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +41,11 @@ namespace QuidGames
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Dodawanie_Sedziego okno = new Dodawanie_Sedziego(LatestSedzia);
+            okno.Show();
+        }
+        private void DodajZ_Click(object sender, RoutedEventArgs e)
+        {
+            Dodawanie_Zespolow okno = new(LatestZespol);
             okno.Show();
         }
     }
