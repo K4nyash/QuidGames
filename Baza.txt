@@ -8,3 +8,8 @@ S;1;Maksymilian;Chmielak;
 Z;1;Milaże;
 Z;1;Milowcy;
 R;1;Rozgrywka Milowej;2;6;5;1;
+T;1;Turniej;Zse;
+S;1;Jan;Nowak;
+Z;1;1h;
+Z;1;1g;
+R;1;Siatkówka;3;7;8;2;
