@@ -13,12 +13,10 @@
                 
             </ComboBox>
             <ComboBox Width="200" Height="30" Margin="5" Name="Druzyna1">
-                <ComboBoxItem>Lorem</ComboBoxItem>
-                <ComboBoxItem>Ipsum</ComboBoxItem>
+                
             </ComboBox>
             <ComboBox Width="200" Height="30" Margin="5" Name="Druzyna2">
-                <ComboBoxItem>Lorem</ComboBoxItem>
-                <ComboBoxItem>Ipsum</ComboBoxItem>
+                
             </ComboBox>
             <ComboBox Width="200" Height="30" Margin="5" Name="Sedzia">
                 

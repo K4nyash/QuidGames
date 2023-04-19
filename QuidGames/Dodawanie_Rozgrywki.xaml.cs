@@ -32,11 +32,11 @@ namespace QuidGames
                 {
                     Turniej.Items.Add(temp[2]);
                 }
-                if (temp[0] == "S")
+                else if (temp[0] == "S")
                 {
                     Sedzia.Items.Add(temp[2]+" " + temp[3]);
                 }
-                if (temp[0] == "Z")
+                else if (temp[0] == "Z")
                 {
                     Druzyna1.Items.Add(temp[2]);
                     Druzyna2.Items.Add(temp[2]);

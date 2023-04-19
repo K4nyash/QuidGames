@@ -10,6 +10,9 @@
         <StackPanel VerticalAlignment="Center" Orientation="Vertical">
             <TextBox Width="200" Height="30" Margin="5" Name="Imie"></TextBox>
             <TextBox Width="200" Height="30" Margin="5" Name="Nazwisko"></TextBox>
+            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyny">
+
+            </ComboBox>
             <StackPanel HorizontalAlignment="Center" Height="46" Orientation="Horizontal">
                 <Button Height="30" Width="100" Margin="5" Click="Button_Click">Zapisz</Button>
                 <Button Height="30" Width="100" Margin="5" Click="Button_Click_1">Anuluj</Button>

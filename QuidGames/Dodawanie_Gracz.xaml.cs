@@ -23,6 +23,16 @@ namespace QuidGames
         {
             InitializeComponent();
             LatestGracz = LG;
+            string Content;
+            Content = File.ReadAllText("../../../../Baza.txt");
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "Z")
+                {
+                    Druzyny.Items.Add(temp[2]);
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,6 +42,7 @@ namespace QuidGames
             Content += "G;" + (LatestGracz + 1).ToString() + ";";
             Content += Imie.Text + ";";
             Content += Nazwisko.Text + ";";
+            Content += (Druzyny.SelectedIndex + 1) + ";";
             Content += "\n";
             File.WriteAllText("../../../../Baza.txt", Content);
             this.Close();
