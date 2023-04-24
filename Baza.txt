@@ -1,5 +1,11 @@
-R;1;asdas;1;2;1;
-R;1;asd;2;1;1;
+R;1;asdas;1;2;1;1;
+R;2;asd;2;1;1;1;
 T;1;Turniej1;Milowa46;
 Z;1;Siema;
-Z;1;Siema1;
+Z;2;Siema2;
+T;2;ad;asd;
+S;1;Jan;Kowalski;
+G;1;Imie;Nazwisko;1;
+G;2;Imie;Nazwisko;1;
+G;3;Imie;Nazwisko;2;
+G;4;Imie;Nazwisko;2;

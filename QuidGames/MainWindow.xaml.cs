@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace QuidGames
 {
@@ -23,9 +24,24 @@ namespace QuidGames
         public int LatestSedzia = 0;
         public int LatestZespol = 0;
         public int LatestGracz = 0;
+
+        public List<Turniej> ListT = new List<Turniej>();
+        public List<Rozgrywka> ListR = new List<Rozgrywka>();
+        public List<Sedzia> ListS = new List<Sedzia>();
+        public List<Zespol> ListZ = new List<Zespol>();
+        public List<Zawodnik> ListG = new List<Zawodnik>();
+
+        public List<int> SzukajD1 = new List<int>();
+        public List<int> SzukajD2 = new List<int>();
+        public List<int> SzukajS = new List<int>();
+        public List<int> SzukajT = new List<int>();
+
+        public string pTurniej;
+        public string pZespol;
         public MainWindow()
         {
             InitializeComponent();
+
             string Content;
             Content = File.ReadAllText("../../../../Baza.txt");
             foreach (string line in Content.Split("\n"))
@@ -36,6 +52,13 @@ namespace QuidGames
                     if (LatestRozgrywka < Convert.ToInt32(temp[1])){
                         LatestRozgrywka = Convert.ToInt32(temp[1]);
                     }
+                    if (Convert.ToInt32(temp[3]) == 1)
+                    {
+                        SzukajD1.Add(Convert.ToInt32(temp[4]));
+                        SzukajD2.Add(Convert.ToInt32(temp[5]));
+                        SzukajS.Add(Convert.ToInt32(temp[6]));
+                        ListR.Add(new Rozgrywka(temp[2], "", "", "", ""));
+                    }
                 }
                 else if (temp[0] == "T")
                 {
@@ -43,6 +66,12 @@ namespace QuidGames
                     {
                         LatestTurniej = Convert.ToInt32(temp[1]);
                     }
+                    if (ListT.Count == 0)
+                    {
+                        pTurniej = temp[2];
+                    }
+                    RozgrywkaWobor.Items.Add(temp[2]);
+                    ListT.Add(new Turniej( temp[2], temp[3]));
                 }
                 else if (temp[0] == "S")
                 {
@@ -50,6 +79,7 @@ namespace QuidGames
                     {
                         LatestSedzia = Convert.ToInt32(temp[1]);
                     }
+                    ListS.Add(new Sedzia(temp[2], temp[3]));
                 }
                 else if (temp[0] == "Z")
                 {
@@ -57,6 +87,12 @@ namespace QuidGames
                     {
                         LatestZespol = Convert.ToInt32(temp[1]);
                     }
+                    if (ListZ.Count == 0)
+                    {
+                        pZespol = temp[2];
+                    }
+                    GraczWobor.Items.Add(temp[2]);
+                    ListZ.Add(new Zespol(temp[2]));
                 }
                 else if (temp[0] == "G")
                 {
@@ -64,8 +100,56 @@ namespace QuidGames
                     {
                         LatestGracz = Convert.ToInt32(temp[1]);
                     }
+                    if (Convert.ToInt32(temp[4]) == 1)
+                    {
+                        ListG.Add(new Zawodnik(temp[2], temp[3], ""));
+                    }
                 }
             }
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "S")
+                {
+                    for (int i = 0; i < SzukajS.Count; i++)
+                    {
+                        if (Convert.ToInt32(temp[1]) == SzukajS[i])
+                        {
+                            ListR[i].Sedzia = temp[2];
+                        }
+                    }
+                }
+                else if (temp[0] == "Z")
+                {
+                    for (int i = 0; i < SzukajD1.Count; i++)
+                    {
+                        if (Convert.ToInt32(temp[1]) == SzukajD1[i])
+                        {
+                            ListR[i].Zespol1 = temp[2];
+                        }
+                        else if (Convert.ToInt32(temp[1]) == SzukajD2[i])
+                        {
+                            ListR[i].Zespol2 = temp[2];
+                        }
+                    }
+                }
+            }
+            foreach(Rozgrywka r in ListR)
+            {
+                r.Turniej = pTurniej;
+            }
+            foreach(Zawodnik z in ListG)
+            {
+                z.Zespol = pZespol;
+            }
+            RozgrywkaDG.ItemsSource = ListR;
+            TurniejDG.ItemsSource = ListT;
+            SedziaDG.ItemsSource = ListS;
+            ZespolDG.ItemsSource = ListZ;
+            GraczDG.ItemsSource = ListG;
+
+            RozgrywkaWobor.SelectedIndex = 0;
+            GraczWobor.SelectedIndex = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -99,6 +183,169 @@ namespace QuidGames
             Dodawanie_Gracz okno = new(LatestGracz);
             okno.Show();
             LatestGracz++;
+        }
+
+        private void RozgrywkaWobor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox obj = (ComboBox)sender;
+
+            ListR = new List<Rozgrywka>();
+            SzukajD1 = new List<int>();
+            SzukajD2 = new List<int>();
+            SzukajS = new List<int>();
+            SzukajT = new List<int>();
+
+            string Content;
+            Content = File.ReadAllText("../../../../Baza.txt");
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "R")
+                {
+                    if (obj.SelectedIndex + 1 == Convert.ToInt32(temp[4]))
+                    {
+                        SzukajD1.Add(Convert.ToInt32(temp[4]));
+                        SzukajD2.Add(Convert.ToInt32(temp[5]));
+                        SzukajS.Add(Convert.ToInt32(temp[6]));
+                        SzukajT.Add(Convert.ToInt32(temp[3]));
+                        ListR.Add(new Rozgrywka(temp[2], "", "", "", ""));
+                    }
+                }
+            }
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "S")
+                {
+                    for (int i = 0; i < SzukajS.Count; i++)
+                    {
+                        if (Convert.ToInt32(temp[1]) == SzukajS[i])
+                        {
+                            ListR[i].Sedzia = temp[2];
+                        }
+                    }
+                }
+                else if (temp[0] == "Z")
+                {
+                    for (int i = 0; i < SzukajD1.Count; i++)
+                    {
+                        if (Convert.ToInt32(temp[1]) == SzukajD1[i])
+                        {
+                            ListR[i].Zespol1 = temp[2];
+                        }
+                        else if (Convert.ToInt32(temp[1]) == SzukajD2[i])
+                        {
+                            ListR[i].Zespol2 = temp[2];
+                        }
+                    }
+                }
+                else if (temp[0] == "T")
+                {
+                    for (int i = 0; i < SzukajT.Count; i++)
+                    {
+                        if (Convert.ToInt32(temp[1]) == SzukajT[i])
+                        {
+                            ListR[i].Turniej = temp[2];
+                        }
+                    }
+                }
+            }
+            RozgrywkaDG.ItemsSource = ListR;
+        }
+        private void GraczWobor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox obj = (ComboBox)sender;
+
+            ListG = new List<Zawodnik>();
+            List<int> SzukajZ = new List<int>();
+
+            string Content;
+            Content = File.ReadAllText("../../../../Baza.txt");
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "G")
+                {
+                    if (obj.SelectedIndex + 1 == Convert.ToInt32(temp[4]))
+                    {
+                        SzukajZ.Add(Convert.ToInt32(temp[4]));
+                        ListG.Add(new Zawodnik(temp[2], temp[3], ""));
+                    }
+                }
+            }
+            foreach (string line in Content.Split("\n"))
+            {
+                string[] temp = line.Split(";");
+                if (temp[0] == "Z")
+                {
+                    for (int i = 0; i < SzukajZ.Count; i++)
+                    {
+                        if (Convert.ToInt32(temp[1]) == SzukajZ[i])
+                        {
+                            ListG[i].Zespol = temp[2];
+                        }
+                    }
+                }
+            }
+            GraczDG.ItemsSource = ListG;
+        }
+    }
+    public class Turniej
+    {
+        public string Nazwa { get; set; }
+        public string Miejsce { get; set; }
+        public Turniej(string n, string m)
+        {
+            Nazwa = n;
+            Miejsce = m;
+        }
+    }
+    public class Rozgrywka
+    {
+        public string Nazwa { get; set; }
+        public string Turniej { get; set; }
+        public string Zespol1{ get; set; }
+        public string Zespol2 { get; set; }
+        public string Sedzia { get; set; }
+        public Rozgrywka(string n, string t, string z1, string z2, string s)
+        {
+            Nazwa = n;
+            Turniej = t;
+            Zespol1 = z1;
+            Zespol2 = z2;
+            Sedzia = s;
+        }
+    }
+    public class Sedzia
+    {
+        public string Imie { get; set; }
+        public string Nazwisko { get; set; }
+        public Sedzia(string im, string n)
+        {
+            Imie = im;
+            Nazwisko = n;
+
+        }
+    }
+    public class Zespol
+    {
+        public string Nazwa { get; set; }
+        public Zespol(string n)
+        {
+            Nazwa = n;
+
+        }
+    }
+    public class Zawodnik
+    {
+        public string Imie { get; set; }
+        public string Nazwisko { get; set; }
+        public string Zespol { get; set; }
+        public Zawodnik(string im, string n, string z)
+        {
+            Imie = im;
+            Nazwisko = n;
+            Zespol = z; 
         }
     }
 }
