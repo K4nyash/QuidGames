@@ -6,12 +6,58 @@
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
         Title="Dodawanie_Zespolow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#F6F6F6"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="b1">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="#D71950"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="250"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Gray"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-            <TextBox Width="200" Height="30" Margin="5" Name="Nazwa"></TextBox>
+        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Height="30" Width="100" Margin="5" Click="Button_Click_1" Content="Wróć">
+                
+            </Button>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Orientation="Vertical" Height="300" HorizontalAlignment="Center">
+            <StackPanel>
+                <Label Width="200" Padding="0">Nazwa zespołu</Label>
+                <TextBox Width="220" Height="40" Name="Nazwa">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                    <TextBox.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                    </TextBox.Effect>
+                </TextBox>
+            </StackPanel>
+
             <StackPanel HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
-                <Button Height="30" Width="100" Margin="5" Click="Button_Click">Zapisz</Button>
-                <Button Height="30" Width="100" Margin="5" Click="Button_Click_1">Anuluj</Button>
+                <Button Margin="10" Click="Button_Click" Style="{StaticResource b1}" Content="Zapisz">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                    </Button.Effect>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>
