@@ -38,11 +38,11 @@ namespace QuidGames
 
         public string pTurniej;
         public string pZespol;
+        public string Content;
         public MainWindow()
         {
             InitializeComponent();
 
-            string Content;
             Content = File.ReadAllText("../../../../Baza.txt");
             foreach (string line in Content.Split("\n"))
             {
@@ -154,40 +154,72 @@ namespace QuidGames
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Dodawanie_Rozgrywki okno = new Dodawanie_Rozgrywki(LatestRozgrywka);
-            okno.Show();
+            Dodawanie_Rozgrywki okno = new(LatestRozgrywka);
+            if (okno.ShowDialog()==true)
+            {
+                RozgrywkaUpdate();
+            }
             LatestRozgrywka++;
         }
 
         private void DodajT_Click(object sender, RoutedEventArgs e)
         {
-            Dodawanie_Turniej okno = new Dodawanie_Turniej(LatestTurniej);
-            okno.Show();
+            Dodawanie_Turniej okno = new(LatestTurniej);
+            if (okno.ShowDialog() == true)
+            {
+                Content = File.ReadAllText("../../../../Baza.txt");
+                string temp1 = Content.Split("\n")[Content.Split("\n").Length - 2];
+                string[] temp2 = temp1.Split(";");
+                RozgrywkaWobor.Items.Add(temp2[2]);
+                ListT.Add(new Turniej(temp2[2], temp2[3]));
+                TurniejDG.ItemsSource = null;
+                TurniejDG.ItemsSource = ListT;
+            }
             LatestTurniej++;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Dodawanie_Sedziego okno = new Dodawanie_Sedziego(LatestSedzia);
-            okno.Show();
+            Dodawanie_Sedziego okno = new(LatestSedzia);
+            if (okno.ShowDialog() == true)
+            {
+                Content = File.ReadAllText("../../../../Baza.txt");
+                string temp1 = Content.Split("\n")[Content.Split("\n").Length-2];
+                string[] temp2 = temp1.Split(";");
+                ListS.Add(new Sedzia(temp2[2], temp2[3]));
+                SedziaDG.ItemsSource = null;
+                SedziaDG.ItemsSource = ListS;
+            }
+            
             LatestSedzia++;
         }
         private void DodajZ_Click(object sender, RoutedEventArgs e)
         {
             Dodawanie_Zespolow okno = new(LatestZespol);
-            okno.Show();
+            if (okno.ShowDialog() == true)
+            {
+                Content = File.ReadAllText("../../../../Baza.txt");
+                string temp1 = Content.Split("\n")[Content.Split("\n").Length - 2];
+                string[] temp2 = temp1.Split(";");
+                GraczWobor.Items.Add(temp2[2]);
+                ListZ.Add(new Zespol(temp2[2]));
+                ZespolDG.ItemsSource = null;
+                ZespolDG.ItemsSource = ListZ;
+            }
             LatestZespol++;
         }
         private void DodajG_Click(object sender, RoutedEventArgs e)
         {
             Dodawanie_Gracz okno = new(LatestGracz);
-            okno.Show();
+            if (okno.ShowDialog() == true)
+            {
+                GraczUpdate();
+            }
             LatestGracz++;
         }
-
-        private void RozgrywkaWobor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RozgrywkaUpdate()
         {
-            ComboBox obj = (ComboBox)sender;
+            ComboBox obj = RozgrywkaWobor;
 
             ListR = new List<Rozgrywka>();
             SzukajD1 = new List<int>();
@@ -250,11 +282,16 @@ namespace QuidGames
                     }
                 }
             }
+            RozgrywkaDG.ItemsSource = null;
             RozgrywkaDG.ItemsSource = ListR;
         }
-        private void GraczWobor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RozgrywkaWobor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox obj = (ComboBox)sender;
+            RozgrywkaUpdate();
+        }
+        private void GraczUpdate()
+        {
+            ComboBox obj = GraczWobor;
 
             ListG = new List<Zawodnik>();
             List<int> SzukajZ = new List<int>();
@@ -287,7 +324,12 @@ namespace QuidGames
                     }
                 }
             }
+            GraczDG.ItemsSource = null;
             GraczDG.ItemsSource = ListG;
+        }
+        private void GraczWobor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GraczUpdate();
         }
     }
     public class Turniej

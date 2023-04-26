@@ -56,11 +56,13 @@ namespace QuidGames
             Content += (Sedzia.SelectedIndex + 1).ToString() + ";";
             Content += "\n";
             File.WriteAllText("../../../../Baza.txt", Content);
+            DialogResult = true;
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
     }

@@ -34,11 +34,13 @@ namespace QuidGames
             Content += Miejsce.Text + ";";
             Content += "\n";
             File.WriteAllText("../../../../Baza.txt", Content);
+            DialogResult = true;
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
     }
