@@ -19,10 +19,15 @@
             <Setter Property="Height" Value="40"></Setter>
             <Setter Property="Width" Value="140"></Setter>
         </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Width" Value="155"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TabControl>
+            <TabControl HorizontalAlignment="Center">
                 <TabItem Header="Turnieje">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="TurniejDG"></DataGrid>
