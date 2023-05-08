@@ -6,6 +6,20 @@
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
         Title="Dodawanie_Rozgrywki" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#F5F5F5"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#E94A4A"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontWeight" Value="DemiBold"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel VerticalAlignment="Center" Orientation="Vertical">
             <TextBox Width="200" Height="30" Margin="5" Name="Nazwa" TextChanged="Txt_TextChanged">
@@ -37,9 +51,27 @@
             <ComboBox Width="200" Height="30" Margin="5" Name="Sedzia" SelectionChanged="Sedzia_SelectionChanged">
                 
             </ComboBox>
-            <StackPanel HorizontalAlignment="Center" Height="46" Orientation="Horizontal">
-                <Button Height="30" Width="100" Margin="5" Click="Button_Click" Name="Zapisz" IsEnabled="False">Zapisz</Button>
-                <Button Height="30" Width="100" Margin="5" Click="Button_Click_1">Anuluj</Button>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Margin="5" Click="Button_Click" Name="Zapisz" IsEnabled="False">Zapisz
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                    </Button.Effect>
+                </Button>
+                <Button Margin="5" Click="Button_Click_1" Content="Anuluj">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                    </Button.Effect>
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>

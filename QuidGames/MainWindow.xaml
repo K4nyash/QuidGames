@@ -6,39 +6,98 @@
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#F6F6F6"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="#E94A4A"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontWeight" Value="DemiBold"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Width" Value="140"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
             <TabControl>
                 <TabItem Header="Turnieje">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="TurniejDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="DodajT_Click">Dodaj Turniej</Button>
+                        <Button Margin="10" Click="DodajT_Click" Content="Dodaj Turniej">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                            </Button.Effect>
+                        </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Rozgrywki">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <ComboBox Name="RozgrywkaWobor" SelectionChanged="RozgrywkaWobor_SelectionChanged"></ComboBox>
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="RozgrywkaDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="Button_Click">Dodaj Rozgrywke</Button>
+                        <Button Margin="10" Click="Button_Click" Content="Dodaj Rozgrywkę">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                            </Button.Effect>
+                        </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Zespoły">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="ZespolDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="DodajZ_Click" >Dodaj Zespołu</Button>
+                        <Button Height="50" Margin="10" Click="DodajZ_Click" Content="Dodaj Zespół">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                            </Button.Effect>
+                        </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Gracze">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <ComboBox Name="GraczWobor" SelectionChanged="GraczWobor_SelectionChanged"></ComboBox>
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="GraczDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="DodajG_Click" >Dodaj Gracza</Button>
+                        <Button Height="50" Margin="10" Click="DodajG_Click" Content="Dodaj Gracza">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                            </Button.Effect>
+                        </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Sędziowie">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="SedziaDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="Button_Click_1" >Dodaj Sędziego</Button>
+                        <Button Height="50" Margin="10" Click="Button_Click_1" Content="Dodaj Sędziego">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                            </Button.Effect>
+                        </Button>
                     </StackPanel>
                 </TabItem>
             </TabControl>
