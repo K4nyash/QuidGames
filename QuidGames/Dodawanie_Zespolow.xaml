@@ -35,7 +35,22 @@
         <StackPanel VerticalAlignment="Bottom" Orientation="Vertical" Height="300" HorizontalAlignment="Center">
             <StackPanel>
                 <Label Width="200" Padding="0">Nazwa zespołu</Label>
-                <TextBox Width="220" Height="40" Name="Nazwa">
+                <TextBox Width="220" Height="40" Name="Nazwa" TextChanged="Txt_TextChanged">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder/>
+                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                    <TextBox.Text>
+                        <Binding Path="Nazwa" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:WalNazwaZ/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -48,7 +63,7 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
-                <Button Margin="10" Click="Button_Click" Style="{StaticResource b1}" Content="Zapisz">
+                <Button Margin="10" Click="Button_Click" Style="{StaticResource b1}" Content="Zapisz" Name="Zapisz" IsEnabled="False">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>

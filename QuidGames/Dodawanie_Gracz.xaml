@@ -8,13 +8,45 @@
         Title="Dodawanie_Gracz" Height="450" Width="800">
     <Grid>
         <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-            <TextBox Width="200" Height="30" Margin="5" Name="Imie"></TextBox>
-            <TextBox Width="200" Height="30" Margin="5" Name="Nazwisko"></TextBox>
-            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyny">
+            <TextBox Width="200" Height="30" Margin="5" Name="Imie" TextChanged="Txt_TextChanged">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder/>
+                            <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="Imie" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:WalImieG/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Width="200" Height="30" Margin="5" Name="Nazwisko" TextChanged="Txt_TextChanged">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder/>
+                            <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="Nazwisko" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:WalNazwiskoG/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyny" SelectionChanged="Druzyny_SelectionChanged">
 
             </ComboBox>
             <StackPanel HorizontalAlignment="Center" Height="46" Orientation="Horizontal">
-                <Button Height="30" Width="100" Margin="5" Click="Button_Click">Zapisz</Button>
+                <Button Height="30" Width="100" Margin="5" Click="Button_Click" IsEnabled="False" Name="Zapisz">Zapisz</Button>
                 <Button Height="30" Width="100" Margin="5" Click="Button_Click_1">Anuluj</Button>
             </StackPanel>
         </StackPanel>

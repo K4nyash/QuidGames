@@ -8,21 +8,37 @@
         Title="Dodawanie_Rozgrywki" Height="450" Width="800">
     <Grid>
         <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-            <TextBox Width="200" Height="30" Margin="5" Name="Nazwa"></TextBox>
-            <ComboBox Width="200" Height="30" Margin="5" Name="Turniej">
+            <TextBox Width="200" Height="30" Margin="5" Name="Nazwa" TextChanged="Txt_TextChanged">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder/>
+                            <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="Nazwa" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:WalNazwaR/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <ComboBox Width="200" Height="30" Margin="5" Name="Turniej" SelectionChanged="Sedzia_SelectionChanged">
                 
             </ComboBox>
-            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyna1">
+            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyna1" SelectionChanged="Sedzia_SelectionChanged">
                 
             </ComboBox>
-            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyna2">
+            <ComboBox Width="200" Height="30" Margin="5" Name="Druzyna2" SelectionChanged="Sedzia_SelectionChanged">
                 
             </ComboBox>
-            <ComboBox Width="200" Height="30" Margin="5" Name="Sedzia">
+            <ComboBox Width="200" Height="30" Margin="5" Name="Sedzia" SelectionChanged="Sedzia_SelectionChanged">
                 
             </ComboBox>
             <StackPanel HorizontalAlignment="Center" Height="46" Orientation="Horizontal">
-                <Button Height="30" Width="100" Margin="5" Click="Button_Click">Zapisz</Button>
+                <Button Height="30" Width="100" Margin="5" Click="Button_Click" Name="Zapisz" IsEnabled="False">Zapisz</Button>
                 <Button Height="30" Width="100" Margin="5" Click="Button_Click_1">Anuluj</Button>
             </StackPanel>
         </StackPanel>
