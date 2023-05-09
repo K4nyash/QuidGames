@@ -5,64 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
-        Title="Dodawanie_Sedziego" Height="450" Width="800">
+        Title="Dodawanie_Sedziego" Height="450" Width="500" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="Grid">
             <Setter Property="Background" Value="#F6F6F6"></Setter>
         </Style>
+
         <Style TargetType="Button">
             <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="Background" Value="#E94A4A"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
-            <Setter Property="Height" Value="40"></Setter>
-            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="200"></Setter>
         </Style>
+
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="12"></Setter>
         </Style>
+
         <Style TargetType="TextBox">
             <Setter Property="BorderBrush" Value="Gray"></Setter>
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-            <TextBox Width="200" Height="30" Margin="5" Name="Imie" TextChanged="Txt_TextChanged">
-                <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder/>
-                        <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </ControlTemplate>
-                </Validation.ErrorTemplate>
-                <TextBox.Text>
+        <StackPanel>
+            <Label FontSize="40" HorizontalAlignment="Center" Margin="0,50,0,0" FontWeight="Bold" Foreground="Gray">Dodaj sędziego:</Label>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Vertical" Margin="0,130,0,0">
+            <StackPanel Margin="0,0,0,5">
+                <Label Width="300" Padding="0" Content="Imię"/>
+                <TextBox Name="Imie" TextChanged="Txt_TextChanged">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                    <TextBox.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                    </TextBox.Effect>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder/>
+                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
                     <Binding Path="Imie" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <local:WalImieS/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBox Width="200" Height="30" Margin="5" Name="Nazwisko" TextChanged="Txt_TextChanged">
-                <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder/>
-                        <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </ControlTemplate>
-                </Validation.ErrorTemplate>
-                <TextBox.Text>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel>
+                <Label Width="300" Padding="0" Content="Nazwisko"/>
+                <TextBox x:Name="Nazwisko" TextChanged="Txt_TextChanged">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                    <TextBox.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                    </TextBox.Effect>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder/>
+                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
                     <Binding Path="Nazwisko" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <local:WalNazwiskoS/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                </TextBox>
+            </StackPanel>
+            
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <Button Margin="5" Click="Button_Click" Name="Zapisz" IsEnabled="False" Content="Zapisz">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">

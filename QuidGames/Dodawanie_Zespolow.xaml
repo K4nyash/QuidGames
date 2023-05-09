@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
-        Title="Dodawanie_Zespolow" Height="450" Width="800">
+        Title="Dodawanie_Zespolow" Height="450" Width="500" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="Grid">
             <Setter Property="Background" Value="#F6F6F6"></Setter>
@@ -18,10 +18,13 @@
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
             <Setter Property="Height" Value="50"></Setter>
             <Setter Property="Width" Value="200"></Setter>
+            
         </Style>
+        
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="12"></Setter>
         </Style>
+        
         <Style TargetType="TextBox">
             <Setter Property="BorderBrush" Value="Gray"></Setter>
             <Setter Property="Width" Value="300"></Setter>
@@ -31,13 +34,13 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <Label FontSize="40" HorizontalAlignment="Center" Margin="0,60,0,0" FontWeight="Bold">Dodaj zespół:</Label>
+            <Label FontSize="40" HorizontalAlignment="Center" Margin="0,65,0,0" FontWeight="Bold" Foreground="Gray">Dodaj zespół:</Label>
         </StackPanel>
 
-        <StackPanel VerticalAlignment="Top" Orientation="Vertical" Width="400" HorizontalAlignment="Center" Margin="0,140,0,0">
+        <StackPanel VerticalAlignment="Top" Orientation="Vertical" Width="400" HorizontalAlignment="Center" Margin="0,140,0,0" Height="260">
             <StackPanel>
                 <Label Width="300" Padding="0" Content="Nazwa zespołu"/>
-                <TextBox x:Name="Nazwa" TextChanged="Txt_TextChanged">
+                <TextBox Name="Nazwa" TextChanged="Txt_TextChanged">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -47,7 +50,7 @@
                         <ControlTemplate>
                             <StackPanel>
                                 <AdornedElementPlaceholder/>
-                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground="Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground="Red" Grid.Row="1" FontSize="12" MaxWidth="350" TextWrapping="Wrap"/>
                             </StackPanel>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
@@ -61,9 +64,8 @@
                     </Binding>
                 </TextBox>
             </StackPanel>
-
-            <StackPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
-                <Button Margin="10" Click="Button_Click" Content="Zapisz" Name="Zapisz" IsEnabled="False">
+            <StackPanel Orientation="Vertical">
+                <Button Margin="10" Click="Button_Click" Content="Zapisz" x:Name="Zapisz" IsEnabled="False">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -73,7 +75,7 @@
                         <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
                     </Button.Effect>
                 </Button>
-                <Button Margin="5" Click="Button_Click_1" Content="Wróć">
+                <Button Margin="5" Click="Button_Click_1" Content="Anuluj">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
