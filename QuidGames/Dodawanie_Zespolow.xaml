@@ -14,23 +14,35 @@
             <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="Background" Value="#E94A4A"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
-            <Setter Property="Height" Value="40"></Setter>
-            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="200"></Setter>
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="12"></Setter>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="BorderBrush" Value="Gray"></Setter>
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel VerticalAlignment="Bottom" Orientation="Vertical" Height="300" HorizontalAlignment="Center">
+        <StackPanel>
+            <Label FontSize="40" HorizontalAlignment="Center" Margin="0,60,0,0" FontWeight="Bold">Dodaj zespół:</Label>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Top" Orientation="Vertical" Width="400" HorizontalAlignment="Center" Margin="0,140,0,0">
             <StackPanel>
-                <Label Width="200" Padding="0">Nazwa zespołu</Label>
-                <TextBox Width="220" Height="40" Name="Nazwa" TextChanged="Txt_TextChanged">
+                <Label Width="300" Padding="0" Content="Nazwa zespołu"/>
+                <TextBox x:Name="Nazwa" TextChanged="Txt_TextChanged">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
                             <StackPanel>
@@ -39,25 +51,18 @@
                             </StackPanel>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
-                    <TextBox.Text>
-                        <Binding Path="Nazwa" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <local:WalNazwaZ/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                    <TextBox.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </TextBox.Resources>
                     <TextBox.Effect>
                         <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
                     </TextBox.Effect>
+                    <Binding Path="Nazwa" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:WalNazwaZ/>
+                        </Binding.ValidationRules>
+                    </Binding>
                 </TextBox>
             </StackPanel>
 
-            <StackPanel HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Center" Margin="5" Orientation="Vertical">
                 <Button Margin="10" Click="Button_Click" Content="Zapisz" Name="Zapisz" IsEnabled="False">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">

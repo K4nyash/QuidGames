@@ -5,24 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="Grid">
             <Setter Property="Background" Value="#F6F6F6"></Setter>
         </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="MinWidth" Value="156"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontWeight" Value="DemiBold"></Setter>
+            <Setter Property="Background" Value="#E94A4A"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Border" Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter Name="ContentSite" ContentSource="Header"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="Border">
+                                <Setter TargetName="Border" Property="Background" Value="#FFF56666"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="Button">
-            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Width" Value="140"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="Background" Value="#E94A4A"></Setter>
             <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
-            <Setter Property="Height" Value="40"></Setter>
-            <Setter Property="Width" Value="140"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFF56666"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        <Style TargetType="TabItem">
-            <Setter Property="Width" Value="155"></Setter>
-            <Setter Property="Height" Value="40"></Setter>
+
+        <Style TargetType="DataGrid">
             <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontWeight" Value="Normal"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
@@ -56,13 +93,14 @@
                             <Button.Effect>
                                 <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
                             </Button.Effect>
+                            
                         </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Zespoły">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="ZespolDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="DodajZ_Click" Content="Dodaj Zespół">
+                        <Button Margin="10" Click="DodajZ_Click" Content="Dodaj Zespół">
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
@@ -78,7 +116,7 @@
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <ComboBox Name="GraczWobor" SelectionChanged="GraczWobor_SelectionChanged"></ComboBox>
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="GraczDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="DodajG_Click" Content="Dodaj Gracza">
+                        <Button Margin="10" Click="DodajG_Click" Content="Dodaj Gracza">
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
@@ -93,7 +131,7 @@
                 <TabItem Header="Sędziowie">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <DataGrid MinColumnWidth="100" IsReadOnly="True" Name="SedziaDG"></DataGrid>
-                        <Button Height="50" Margin="10" Click="Button_Click_1" Content="Dodaj Sędziego">
+                        <Button Margin="10" Click="Button_Click_1" Content="Dodaj Sędziego">
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
