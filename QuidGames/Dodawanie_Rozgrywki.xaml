@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuidGames"
         mc:Ignorable="d"
-        Title="Dodawanie_Rozgrywki" Height="600" Width="500" ResizeMode="NoResize">
+        Title="Dodawanie_Rozgrywki" Height="660" Width="500" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="Grid">
             <Setter Property="Background" Value="#F5F5F5"></Setter>
@@ -18,6 +18,20 @@
             <Setter Property="Height" Value="50"></Setter>
             <Setter Property="Width" Value="200"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFF56666"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style TargetType="TextBox">
@@ -37,10 +51,11 @@
         <StackPanel>
             <Label FontSize="40" HorizontalAlignment="Center" Margin="0,50,0,0" FontWeight="Bold" Foreground="Gray">Dodaj rozgrywkę:</Label>
         </StackPanel>
+        
         <StackPanel VerticalAlignment="Top" Orientation="Vertical" Margin="0,130,0,0">
-            <StackPanel>
-                <Label Width="300" Padding="0" Content="Nazwa turnieju"/>
-                <TextBox x:Name="Nazwa" TextChanged="Txt_TextChanged">
+            <StackPanel Margin="0,0,0,30">
+                <Label Width="300" Padding="0" Content="Nazwa rozgrywki"/>
+                <TextBox Name="Nazwa" TextChanged="Txt_TextChanged">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -53,7 +68,7 @@
                         <ControlTemplate>
                             <StackPanel>
                                 <AdornedElementPlaceholder/>
-                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="13" FontWeight="Bold" MaxWidth="350" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding CurrentItem.ErrorContent}" Foreground = "Red" Grid.Row="1" FontSize="12" MaxWidth="350" TextWrapping="Wrap"/>
                             </StackPanel>
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
@@ -65,13 +80,44 @@
                 </TextBox>
             </StackPanel>
 
-            <ComboBox Margin="5" Name="Turniej" SelectionChanged="Sedzia_SelectionChanged">
+            <StackPanel Margin="0,0,0,15">
+                <StackPanel Margin="0,0,0,5">
+                    <Label Width="300" Padding="0" Content="Zespół"/>
+                    <ComboBox Name="Turniej" SelectionChanged="Sedzia_SelectionChanged">
+                        <ComboBox.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                        </ComboBox.Effect>
+                    </ComboBox>
+                </StackPanel>
 
-            </ComboBox>
-            <ComboBox Margin="5" Name="Druzyna1" SelectionChanged="Sedzia_SelectionChanged"></ComboBox>
-            <ComboBox Margin="5" Name="Druzyna2" SelectionChanged="Sedzia_SelectionChanged"></ComboBox>
-            <ComboBox Margin="5" Name="Sedzia" SelectionChanged="Sedzia_SelectionChanged"></ComboBox>
+                <StackPanel Margin="0,0,0,5">
+                    <Label Width="300" Padding="0" Content="Turniej 1"/>
+                    <ComboBox Name="Druzyna1" SelectionChanged="Sedzia_SelectionChanged">
+                        <ComboBox.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                        </ComboBox.Effect>
+                    </ComboBox>
+                </StackPanel>
 
+                <StackPanel Margin="0,0,0,5">
+                    <Label Width="300" Padding="0" Content="Turniej 2"/>
+                    <ComboBox Name="Druzyna2" SelectionChanged="Sedzia_SelectionChanged">
+                        <ComboBox.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                        </ComboBox.Effect>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Width="300" Padding="0" Content="Sędzia"/>
+                    <ComboBox Name="Sedzia" SelectionChanged="Sedzia_SelectionChanged">
+                        <ComboBox.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="270" Color="Black" Opacity="0.4" BlurRadius="3"/>
+                        </ComboBox.Effect>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+            
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <Button Margin="5" Click="Button_Click" Name="Zapisz" IsEnabled="False">Zapisz
                     <Button.Resources>

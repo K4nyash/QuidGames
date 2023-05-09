@@ -18,7 +18,6 @@
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="FontWeight" Value="DemiBold"></Setter>
             <Setter Property="Background" Value="#E94A4A"></Setter>
-            <Setter Property="Margin" Value="2"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
